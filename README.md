@@ -1,7 +1,7 @@
 # Real-ESRGAN
 PyTorch implementation of a Real-ESRGAN model trained on custom dataset. This model shows better results on faces compared to the original version. It is also easier to integrate this model into your projects.
 
-You can try it in [google colab](https://colab.research.google.com/drive/1YlWt--P9w25JUs8bHBOuf8GcMkx-hocP)
+You can try it in [google colab](https://colab.research.google.com/drive/1yO6deHTscL7FBcB6_SRzbxRr1nVtuZYE?usp=sharing)
 
 - Paper: [Real-ESRGAN: Training Real-World Blind Super-Resolution with Pure Synthetic Data](https://arxiv.org/abs/2107.10833)
 - [Official github](https://github.com/xinntao/Real-ESRGAN)
@@ -42,7 +42,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = RealESRGAN(device, scale=4)
 model.load_weights('weights/RealESRGAN_x4.pth')
 
-path_to_image = 'inputs/lr_image.jpg'
+path_to_image = 'inputs/lr_image.png'
 image = Image.open(path_to_image).convert('RGB')
 
 sr_image = model.predict(image)
