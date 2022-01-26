@@ -3,7 +3,7 @@ PyTorch implementation of a Real-ESRGAN model trained on custom dataset. This mo
 
 Real-ESRGAN is an upgraded [ESRGAN](https://arxiv.org/abs/1809.00219) trained with pure synthetic data is capable of enhancing details while removing annoying artifacts for common real-world images. 
 
-You can try it in [google colab](https://colab.research.google.com/drive/1yO6deHTscL7FBcB6_SRzbxRr1nVtuZYE?usp=sharing)
+You can try it in [google colab](https://colab.research.google.com/drive/1YlWt--P9w25JUs8bHBOuf8GcMkx-hocP?usp=sharing)
 
 - Paper: [Real-ESRGAN: Training Real-World Blind Super-Resolution with Pure Synthetic Data](https://arxiv.org/abs/2107.10833)
 - [Official github](https://github.com/xinntao/Real-ESRGAN)
