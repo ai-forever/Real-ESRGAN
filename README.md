@@ -15,7 +15,7 @@ You can try it in [google colab](https://colab.research.google.com/drive/1YlWt--
 1. Clone repo
 
    ```bash
-   git clone https://https://github.com/sberbank-ai/Real-ESRGAN
+   git clone https://github.com/sberbank-ai/Real-ESRGAN
    cd Real-ESRGAN
    ```
 
