@@ -2,7 +2,7 @@ import os
 import torch
 from PIL import Image
 import numpy as np
-from realesrgan import RealESRGAN
+from RealESRGAN import RealESRGAN
 
 
 def main() -> int:
@@ -13,7 +13,6 @@ def main() -> int:
         image = Image.open(f"inputs/{image}").convert('RGB')
         sr_image = model.predict(image)
         sr_image.save(f'results/{i}.png')
-    return 1 
 
 
 if __name__ == '__main__':
