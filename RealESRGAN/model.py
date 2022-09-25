@@ -5,14 +5,18 @@ import numpy as np
 import cv2
 
 from .rrdbnet_arch import RRDBNet
-from .utils import *
+from .utils import pad_reflect, split_image_into_overlapping_patches, stich_together, \
+                   unpad_image
 
 
 class RealESRGAN:
     def __init__(self, device, scale=4):
         self.device = device
         self.scale = scale
-        self.model = RRDBNet(num_in_ch=3, num_out_ch=3, num_feat=64, num_block=23, num_grow_ch=32, scale=scale)
+        self.model = RRDBNet(
+            num_in_ch=3, num_out_ch=3, num_feat=64, 
+            num_block=23, num_grow_ch=32, scale=scale
+        )
         
     def load_weights(self, model_path):
         loadnet = torch.load(model_path)
@@ -33,8 +37,9 @@ class RealESRGAN:
         lr_image = np.array(lr_image)
         lr_image = pad_reflect(lr_image, pad_size)
 
-        patches, p_shape = split_image_into_overlapping_patches(lr_image, patch_size=patches_size, 
-                                                                padding_size=padding)
+        patches, p_shape = split_image_into_overlapping_patches(
+            lr_image, patch_size=patches_size, padding_size=padding
+        )
         img = torch.FloatTensor(patches/255).permute((0,3,1,2)).to(device).detach()
 
         with torch.no_grad():
@@ -47,8 +52,10 @@ class RealESRGAN:
 
         padded_size_scaled = tuple(np.multiply(p_shape[0:2], scale)) + (3,)
         scaled_image_shape = tuple(np.multiply(lr_image.shape[0:2], scale)) + (3,)
-        np_sr_image = stich_together(np_sr_image, padded_image_shape=padded_size_scaled,
-                                target_shape=scaled_image_shape, padding_size=padding * scale)
+        np_sr_image = stich_together(
+            np_sr_image, padded_image_shape=padded_size_scaled, 
+            target_shape=scaled_image_shape, padding_size=padding * scale
+        )
         sr_img = (np_sr_image*255).astype(np.uint8)
         sr_img = unpad_image(sr_img, pad_size*scale)
         sr_img = Image.fromarray(sr_img)

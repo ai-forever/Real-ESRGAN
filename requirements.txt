@@ -4,4 +4,3 @@ Pillow
 torch>=1.7
 torchvision>=0.8.0
 tqdm
-imageio

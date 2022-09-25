@@ -3,7 +3,6 @@ import torch
 from PIL import Image
 import os
 import io
-import imageio
 
 def pad_reflect(image, pad_size):
     imsize = image.shape
@@ -20,13 +19,6 @@ def pad_reflect(image, pad_size):
 
 def unpad_image(image, pad_size):
     return image[pad_size:-pad_size, pad_size:-pad_size, :]
-
-
-def jpegBlur(im,q):
-    buf = io.BytesIO()
-    imageio.imwrite(buf,im,format='jpg',quality=q)
-    s = buf.getbuffer()
-    return imageio.imread(s,format='jpg')
 
 
 def process_array(image_array, expand=True):
