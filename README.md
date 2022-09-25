@@ -7,27 +7,15 @@ Real-ESRGAN is an upgraded [ESRGAN](https://arxiv.org/abs/1809.00219) trained wi
 
 You can try it in [google colab](https://colab.research.google.com/drive/1YlWt--P9w25JUs8bHBOuf8GcMkx-hocP?usp=sharing) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1YlWt--P9w25JUs8bHBOuf8GcMkx-hocP?usp=sharing)
 
-- Paper: [Real-ESRGAN: Training Real-World Blind Super-Resolution with Pure Synthetic Data](https://arxiv.org/abs/2107.10833)
-- [Official github](https://github.com/xinntao/Real-ESRGAN)
+- [Paper (Real-ESRGAN: Training Real-World Blind Super-Resolution with Pure Synthetic Data)](https://arxiv.org/abs/2107.10833)
+- [Original implementation](https://github.com/xinntao/Real-ESRGAN)
+- [Huggingface 🤗](https://huggingface.co/sberbank-ai/Real-ESRGAN)
 
 ### Installation
 
----
-
-1. Clone repo
-
-   ```bash
-   git clone https://github.com/sberbank-ai/Real-ESRGAN
-   cd Real-ESRGAN
-   ```
-
-2. Install requirements
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Download [pretrained weights](https://drive.google.com/drive/folders/16PlVKhTNkSyWFx52RPb2hXPIQveNGbxS) and put them into `weights/` folder
+```bash
+pip install git+https://github.com/sberbank-ai/Real-ESRGAN.git
+```
 
 ### Usage
 
@@ -39,12 +27,12 @@ Basic usage:
 import torch
 from PIL import Image
 import numpy as np
-from realesrgan import RealESRGAN
+from RealESRGAN import RealESRGAN
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 model = RealESRGAN(device, scale=4)
-model.load_weights('weights/RealESRGAN_x4.pth')
+model.load_weights('weights/RealESRGAN_x4.pth', download=True)
 
 path_to_image = 'inputs/lr_image.png'
 image = Image.open(path_to_image).convert('RGB')
