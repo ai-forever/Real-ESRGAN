@@ -56,9 +56,10 @@ class RealESRGAN:
         self.model.eval()
         self.model.to(self.device)
         
-    @torch.cuda.amp.autocast()
+    
     def predict(self, lr_image, batch_size=4, patches_size=192,
                 padding=24, pad_size=15):
+        torch.autocast(device_type=self.device.type)
         scale = self.scale
         device = self.device
         lr_image = np.array(lr_image)
